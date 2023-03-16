@@ -25,29 +25,25 @@ namespace ZSK_Währungsrechner
             Console.WriteLine($"{K} Kuh, {S} Schaf, {Z} Ziege und {z} kleine Ziege sind {euro} Euro.");
             return euro;
         }
-        static void EuroInDAHRS(double euro)
+        static void EuroInDAHRS(int euro)
         {
             int d = 8 * 1000;
             int a = (d / 11);
             int h = (a / 5);
             int r = (9 * h + 7 * a);
             int s = (h / 11);
-            double rest = euro * 1000;
-            int D = ((int)(rest / d));
+            int rest = euro;
+            rest *= 1000;
+            int D = rest / d;
             rest = rest % d;
-            Console.WriteLine(rest);
-            int R = ((int)(rest / r));
+            int R = (rest / r);
             rest = rest % r;
-            Console.WriteLine(rest);
-            int A = ((int)(rest / a));
+            int A = (rest / a);
             rest = rest % a;
-            Console.WriteLine(rest);
-            int H = ((int)(rest / h));
+            int H = (rest / h);
             rest = rest % h;
-            Console.WriteLine(rest);
-            int S = ((int)(rest / s));
-            rest = (rest % s) / 1000;
-            Console.WriteLine($"{euro} Euro sind in DAHRS: {D} Dorsch, {R} Rochen, {A} Aal, {H} Hering, {S} Sprotte und Rest {rest} Euro");
+            int S = (rest / s);
+            Console.WriteLine($"{euro} Euro sind in DAHRS: {D} Dorsch, {R} Rochen, {A} Aal, {H} Hering und {S} Sprotte.");
         }
         static double DAHRSInEuro(int D, int R, int A, int H, int S)
         {
@@ -90,7 +86,7 @@ namespace ZSK_Währungsrechner
                             break;
                         case "3":
                             Console.Write("Wieviel Euro wollen Sie in fisch investieren? :");
-                            double eurod = Convert.ToDouble(Console.ReadLine());
+                            int eurod = Convert.ToInt32(Console.ReadLine());
                             EuroInDAHRS(eurod);
                             break;
                         case "4":
@@ -115,7 +111,7 @@ namespace ZSK_Währungsrechner
                             Z = Convert.ToInt32(Console.ReadLine());
                             Console.Write("Wieviel kleine Ziege sollen umgerechnet werden? :");
                             z = Convert.ToInt32(Console.ReadLine());
-                            EuroInDAHRS(Convert.ToDouble(ZSKInEuro(K, S, Z, z)));
+                            EuroInDAHRS(ZSKInEuro(K, S, Z, z));
                             break;
                         case "6":
                             Console.Write("Wieviel Dorsch sollen umgerechnet werden? :");
